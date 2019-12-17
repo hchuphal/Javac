@@ -1,0 +1,121 @@
+/*******************************************************************************
+ * Copyright (c) 2010 McGill University
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     McGill University - initial API and implementation
+ *******************************************************************************/
+/**
+ * 
+ */
+package ca.mcgill.cs.swevo.qualyzer.handlers;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.File;
+
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import ca.mcgill.cs.swevo.qualyzer.TestUtil;
+import ca.mcgill.cs.swevo.qualyzer.dialogs.RenameDialog;
+import ca.mcgill.cs.swevo.qualyzer.editors.IDialogTester;
+import ca.mcgill.cs.swevo.qualyzer.model.Facade;
+import ca.mcgill.cs.swevo.qualyzer.model.PersistenceManager;
+import ca.mcgill.cs.swevo.qualyzer.model.Project;
+import ca.mcgill.cs.swevo.qualyzer.model.Transcript;
+
+/**
+ * @author Jonathan Faubert
+ *
+ */
+public class RenameTranscriptHandlerTest
+{
+	private static final String PROJECT = "Project";
+	private static final String TRANSCRIPT = "TranscriptName";
+	private static final String INV = "Inv";
+	private static final String PART = "Parti";
+	
+	private static final String TRANSCRIPT2 = "OtherTranscript";
+	
+	private Project fProject;
+	private Transcript fTranscript;
+	private IWorkbenchPage fPage;
+
+	@Before
+	public void setUp()
+	{
+		fPage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		fPage.closeAllEditors(false);
+		
+		fProject = TestUtil.createProject(PROJECT, INV, PART, TRANSCRIPT);
+		fTranscript = fProject.getTranscripts().get(0);
+	}
+	
+	@After
+	public void tearDown()
+	{
+		Facade.getInstance().deleteProject(fProject);
+	}
+	
+	@Test
+	public void testRenameTranscript()
+	{
+		TestUtil.setProjectExplorerSelection(fTranscript);
+		
+		String projectPath = ResourcesPlugin.getWorkspace().getRoot().getProject(PROJECT).getLocation().toString();
+		String oldFile = projectPath + File.separator + "transcripts" + File.separator + fTranscript.getFileName();
+		
+		RenameTranscriptHandler handler = new RenameTranscriptHandler();
+		handler.setTesting(true);
+		handler.setTester(new IDialogTester()
+		{
+			
+			@Override
+			public void execute(Dialog dialog)
+			{
+				RenameDialog rename = (RenameDialog) dialog;
+				
+				rename.getNameText().setText(TRANSCRIPT2);
+				
+				rename.okPressed();
+			}
+		});
+		
+		try
+		{
+			handler.execute(null);
+		}
+		catch (ExecutionException e)
+		{
+			fail();
+		}
+		
+		fProject = PersistenceManager.getInstance().getProject(PROJECT);
+		assertEquals(fProject.getTranscripts().size(), 1);
+		fTranscript = fProject.getTranscripts().get(0);
+		
+		assertEquals(fTranscript.getName(), TRANSCRIPT2);
+		Transcript lTranscript = Facade.getInstance().forceTranscriptLoad(fTranscript);
+		
+		assertEquals(lTranscript.getParticipants().size(), 1);
+		assertEquals(lTranscript.getParticipants().get(0), fProject.getParticipants().get(0));
+		
+		String newFile = projectPath + File.separator + "transcripts" + File.separator + fTranscript.getFileName();
+		
+		assertTrue(new File(newFile).exists());
+		assertFalse(new File(oldFile).exists());
+	}
+}

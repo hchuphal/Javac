@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RTFEditor
+Bundle-SymbolicName: RTFEditor; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: rtfeditor.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.core.resources;bundle-version="3.5.2",
+ org.eclipse.jface.text;bundle-version="3.5.2",
+ org.eclipse.ui.ide;bundle-version="3.5.2",
+ net.sf.colorer;bundle-version="0.9.5"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Automatic-Module-Name: RTFEditor
+Export-Package: rtfeditor,
+ rtfeditor.editors,
+ rtfeditor.handlers

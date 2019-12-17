@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qualyzer_test
+Bundle-SymbolicName: ca.mcgill.cs.swevo.qualyzer_test; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ca.mcgill.cs.swevo.qualyzer_test.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-Vendor: McGill University
+Automatic-Module-Name: ca.mcgill.cs.swevo.qualyzer_test
+Export-Package: ca.mcgill.cs.swevo.qualyzer_test

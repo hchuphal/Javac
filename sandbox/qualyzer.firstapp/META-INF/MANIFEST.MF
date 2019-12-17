@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FirstApp
+Bundle-SymbolicName: qualyzer.firstapp; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: qualyzer.firstapp.Activator
+Bundle-Vendor: McGill University
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: qualyzer.firstapp
+Export-Package: qualyzer.firstapp

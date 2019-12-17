@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qualyzer Tests
+Bundle-SymbolicName: ca.mcgill.cs.swevo.qualyzer.tests
+Bundle-Version: 1.2.0.qualifier
+Bundle-Vendor: McGill University
+Fragment-Host: ca.mcgill.cs.swevo.qualyzer;bundle-version="0.1.0"
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: ca.mcgill.cs.swevo.qualyzer.tests
+Export-Package: ca,
+ ca.mcgill,
+ ca.mcgill.cs,
+ ca.mcgill.cs.swevo,
+ ca.mcgill.cs.swevo.qualyzer,
+ ca.mcgill.cs.swevo.qualyzer.editors,
+ ca.mcgill.cs.swevo.qualyzer.handlers,
+ ca.mcgill.cs.swevo.qualyzer.model,
+ ca.mcgill.cs.swevo.qualyzer.model.validation,
+ ca.mcgill.cs.swevo.qualyzer.ui,
+ ca.mcgill.cs.swevo.qualyzer.util

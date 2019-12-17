@@ -1,0 +1,32 @@
+body { 
+	margin: 1em 3em; 
+	background: white; 
+	font:76%/1.5 Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+img {
+	border: 0;
+	margin: 1em 1em 1em 1em;
+}
+
+p { margin: 0.5em 0 0em 0 }
+
+h1 { 
+	color: #353360; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16pt;   
+	margin: 1em 0 0 0;
+}
+
+h2 {
+	color: #353360; 
+	font-size: 11pt;
+	font-weight: bold;
+	margin: 1em 0 0 0 
+}
+
+code {
+	font-size: 1.2em;
+	color: navy;
+}
+

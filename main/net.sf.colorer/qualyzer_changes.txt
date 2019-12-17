@@ -1,0 +1,8 @@
+//Changes made by Jonathan Faubert for Qualyzer
+
+copied MANIFEST.in.MF to MANIFEST.MF
+set plugin version number to 0.9.5
+moved the os folder out of distr
+added the colorer folder
+plugin.xml : removed popup menu's
+colorer/hrc/common.jar/scripts/rtf.hrc : removed everything from <schema name="rtf"> to </schema>

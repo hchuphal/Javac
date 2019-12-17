@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TreeViewerTest
+Bundle-SymbolicName: TreeViewerTest; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: treeviewertest.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Automatic-Module-Name: TreeViewerTest
+Export-Package: treeviewertest,
+ treeviewertest.model,
+ treeviewertest.providers

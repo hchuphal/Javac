@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile ca.mcgill.cs.swevo.qualyzer_test.feature" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../ca.mcgill.cs.swevo.qualyzer_test" target="build.jars"/>
+	</target>
+</project>
